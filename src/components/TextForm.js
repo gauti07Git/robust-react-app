@@ -2,23 +2,36 @@ import React, {useState} from 'react'
 
 export default function TextForm(props) {
     const handleUpperCase = () => {
-        let newText = text.toUpperCase();
+        let newText = (text || "").toUpperCase();
         setText(newText);
+        if (newText.length > 0) {
+            props.showAlert("Converted to Uppercase!", 'success');
+        }
     }
     const handleLowercase = () => {
-        let newText = text.toLowerCase();
+        let newText = (text || "").toLowerCase();
         setText(newText);
+        if (newText.length > 0) {
+            props.showAlert("Converted to Lowercase!", 'success');
+        }
     }
     const handleCopy = () => {
         navigator.clipboard.writeText(text);
+        props.showAlert("Copied Text Successfully!", 'success');
     }
     const handleClearText = () => {
-        setText('');
+        if ((text || "").length > 0) {    
+            setText('');
+            props.showAlert("Cleared Text Successfully!", 'success');
+        }
     }
 
     const handleRemoveSpace = () => {
-        let newText = text.replace(/\s+/g, '');
-        setText(newText);
+        if ((text || "").length > 0) {
+            let newText = text.replace(/\s+/g, '');
+            setText(newText);
+            props.showAlert("Removed Space Successfully!", 'success');
+        }
     }
     const textChange = (event) => {
         setText(event.target.value);
