@@ -16,6 +16,7 @@ function App() {
       setAlert(null);
     }, 1000);
   }
+  document.title = "Text Manager";
   const modeChange = () => {
     if (mode === 'light') {
       setMode('dark');
