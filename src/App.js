@@ -3,6 +3,8 @@ import TextForm from './components/TextForm';
 import Navbar from './components/Navbar';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+import About from './components/About';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -30,13 +32,18 @@ function App() {
   }
   return (
     <>
-      <Navbar title={"Text Manager"} aboutText={"About"} mode={mode} modeChange={modeChange} /> {/* send modeChange() function as props */}
-      <div>
-        <Alert alert={alert} />
-      </div>  
-      <div className='container my-3'>
-        <TextForm heading="Enter Text Here" mode={mode} showAlert={showAlert} />{/* showAlert function pass as props */}
-      </div>
+      <Router>
+        <Navbar title={"Text Manager"} aboutText={"About"} mode={mode} modeChange={modeChange} /> {/* send modeChange() function as props */}
+        <div>
+          <Alert alert={alert} />
+        </div>
+        <div className='container my-3'>
+          <Routes>
+            <Route path="/" element={<TextForm heading="Enter Text Here" mode={mode} showAlert={showAlert} />} />
+            <Route path="/about" element={<About mode={mode}/>} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
