@@ -31,7 +31,9 @@ function App() {
   return (
     <>
       <Navbar title={"Text Manager"} aboutText={"About"} mode={mode} modeChange={modeChange} /> {/* send modeChange() function as props */}
-      <Alert alert={alert} />
+      <div>
+        <Alert alert={alert} />
+      </div>  
       <div className='container my-3'>
         <TextForm heading="Enter Text Here" mode={mode} showAlert={showAlert} />{/* showAlert function pass as props */}
       </div>
